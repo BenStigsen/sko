@@ -11,6 +11,16 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+app.use((res, req, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); //* is all requests meaning /* . Can specify urls instead.
+    res.header('Access-Conrol-Allow-Headers', '*');
+
+    if (req.method === 'OPTIONS') {
+        res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELTE');
+        return res.status(200).json({});
+    }
+});
+
 app.use(morgan('dev')); //logging
 
 app.use('/shoes', shoeRoutes);
