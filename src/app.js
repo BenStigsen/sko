@@ -2,6 +2,23 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const { Sequelize, DataTypes } = require('sequelize'); //links the constructor to the import.
+
+const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    Storage: './database.sqlite3'
+});
+
+async function initDB() {
+    try {
+        await sequelize.authenticate();
+        console.log('Connection successful!');
+    } catch (error) {
+        console.error('Connection failed.', error);
+    }
+}
+
+initDB();
 
 const shoeRoutes = require('./api/routes/shoes');
 
@@ -11,6 +28,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+//Allow CORS
 app.use((res, req, next) => {
     res.header('Access-Control-Allow-Origin', '*'); //* is all requests meaning /* . Can specify urls instead.
     res.header('Access-Conrol-Allow-Headers', '*');
