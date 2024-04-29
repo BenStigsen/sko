@@ -2,9 +2,13 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Fetching all shoes!'
-    });
+    res.render('index.html', {
+        products: [
+            { name: "Test", price: 25.75 },
+            { name: "Test2", price: 25.75 },
+            { name: "Test3", price: 25.75 }
+        ]
+    })
 });
 
 router.post('/', (req, res, next) => {
