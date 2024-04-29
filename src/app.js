@@ -2,30 +2,11 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const { Sequelize, DataTypes } = require('sequelize'); //links the constructor to the import.
-
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    Storage: './database.sqlite3'
-});
-
-async function initDB() {
-    try {
-        await sequelize.authenticate();
-        console.log('Connection successful!');
-    } catch (error) {
-        console.error('Connection failed.', error);
-    }
-}
-
-initDB();
 
 const shoeRoutes = require('./api/routes/shoes');
-
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
-
+    
+app.use(morgan('dev')); //logging
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //Allow CORS
@@ -37,9 +18,8 @@ app.use((res, req, next) => {
         res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELTE');
         return res.status(200).json({});
     }
+    next();
 });
-
-app.use(morgan('dev')); //logging
 
 app.use('/shoes', shoeRoutes);
 
@@ -59,5 +39,7 @@ app.use((error, req, res, next) => {
         }
     });
 });
+
+require('./models/shoes')
 
 module.exports = app;
