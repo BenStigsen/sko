@@ -1,52 +1,22 @@
 const express = require('express');
 const router = express.Router();
 
+const { readShoe, readShoes } = require('../models/shoes');
+
 router.get('/', (req, res, next) => {
-    res.render('index.html', {
-        products: [
-            { name: "Test", price: 25.75 },
-            { name: "Test2", price: 25.75 },
-            { name: "Test3", price: 25.75 }
-        ]
-    })
-});
-
-router.post('/', (req, res, next) => {
-    const product = {
-        name: req.body.name,
-        price: req.body.price
-    }
-
-    res.status(201).json({
-        message: 'Posting a shoe!',
-        createdProduct: product
-    }); 
-});
-
-router.patch('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Updated shoe!'
-    });
-});
-
-router.delete('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'Deleted shoe!'
-    });
+    res.render('index.html', { products: readShoes() })
 });
 
 router.get('/:shoeId', (req, res, next) => {
-    const id = req.params.shoeId;
-    if (id === 'special') {
-        res.status(200).json({
-            message: 'You\'ve discovered the special ID!',
-            id: id
+    const product = readShoe(req.params.shoeId);
+    if (!product) {
+        res.status(404).json({
+            message: 'Shoe not found!'
         });
-    } else {
-        res.status(200).json({
-            message: 'You passed an ID!'
-        });
+        return;
     }
+
+    res.render('product.html', { product });
 });
 
 module.exports = router;
