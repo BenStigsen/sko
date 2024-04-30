@@ -3,8 +3,10 @@ const router = express.Router();
 
 const { readShoe, readShoes } = require('../models/shoes');
 
+router.use(express.static('public'));
+
 router.get('/', (req, res, next) => {
-    res.render('index.html', { products: readShoes() })
+    res.render('index.html', { products: readShoes() });
 });
 
 router.get('/:shoeId', (req, res, next) => {
