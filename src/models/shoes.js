@@ -1,4 +1,4 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const connection = require('./connection');
 
 class Shoe extends Model { }
@@ -11,22 +11,13 @@ Shoe.init(
     { sequelize, modelName: 'shoe' },//for some reason only sequelize is allowed. No other variable name.
 );
 
-/*
- * Helper function used to open a connection to the database then run a query.
- */
-async function query(query) {
+async function createShoe(shoe) {
     await connection.sync();
-    query();
-}
-
-function createShoe(shoe) {
-    query(async () => {
-        const createdShoe = await Shoe.create({
-            name: shoe.name,
-            price: shoe.price
-        });
-        console.log(createdShoe.toJSON());
+    const createdShoe = await Shoe.create({
+        name: shoe.name,
+        price: shoe.price
     });
+    console.log(createdShoe.toJSON());
 }
 
 function createShoes(...shoes) {
@@ -35,19 +26,19 @@ function createShoes(...shoes) {
     }
 }
 
-function readShoe(id) {
-    query(async () => {
-        const found = await Shoe.findOne({ where: { id: id } });
-        if (found === null) {
-            console.log('No shoe found matching the id.');
-        } else {
-            console.log(found.toJSON());
-            return found;
-        }
-    });
+async function readShoe(id) {
+    await connection.sync();
+    const found = await Shoe.findOne({ where: { id: id } });
+    if (found === null) {
+        console.log('No shoe found matching the id.');
+    } else {
+        console.log(found.toJSON());
+        return found;
+    }
 }
 
 async function readShoes(print) {
+    await connection.sync();
     const shoes = await Shoe.findAll();
     if (print) {
         for (let shoe of shoes) {
@@ -57,27 +48,23 @@ async function readShoes(print) {
     return shoes
 }
 
-function updateShoe(id, shoe) {
-    query(async () => {
-        await Shoe.update({
-            name: shoe.name,
-            price: shoe.price
-        },
-            { where: { id: id } }
-        )
-        console.log('Updated to:')
-        readShoe(id);
-    });
+async function updateShoe(id, shoe) {
+    await Shoe.update({
+        name: shoe.name,
+        price: shoe.price
+    },
+        { where: { id: id } }
+    )
+    console.log('Updated to:')
+    readShoe(id);
 }
 
 //Not checking if id exists in the database. Doesn't present an error if given invalid id.
-function deleteShoe(id) {
-    query(async () => {
-        await Shoe.destroy({
-            where: {
-                id: id
-            }
-        });
+async function deleteShoe(id) {
+    await Shoe.destroy({
+        where: {
+            id: id
+        }
     });
     console.log('id: ' + id + ' successfully deleted.')
 }
@@ -88,6 +75,12 @@ function deleteShoes(...ids) {
         deleteShoe(id);
     }
 }
+
+console.log('test')
+const adidias = Shoe.build({
+    name: 'Adidas',
+    price: 420
+});
 
 module.exports = {
     createShoe,
