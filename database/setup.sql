@@ -1,5 +1,5 @@
 -- Create the shoes table
-CREATE TABLE `shoes` (
+CREATE TABLE IF NOT EXISTS `shoes` (
     `id` INTEGER PRIMARY KEY AUTOINCREMENT, 
     `name` VARCHAR(255),
     `price` INTEGER,
