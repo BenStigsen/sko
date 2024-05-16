@@ -3,16 +3,30 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="/assets/style.css">
         <title>sko</title>
     </head>
     <body>
-        <h1><b>SHOE</b>FACTORY</h1>
-        {% for product in products %}
-            <div class="product">
-                <h2>{{ product.name }}</h2>
-                <p>{{ product.price }}</p>
+        <header class="text-center">
+            <h1><b>SHOE</b>FACTORY</h1>
+        </header>
+        <main class="text-center sm:w-full lg:w-1/2 ml-auto mr-auto">
+            <nav class="flex text-center justify-between">
+                <a href="/">Sneakers</a>
+                <a href="/">Højhælede</a>
+                <a href="/">Støvler</a>
+                <a href="/">Sandaler</a>
+            </nav>
+
+            <div class="products grid grid-cols-3 gap-2 place-content-start">
+                {% for product in products %}
+                <div class="product">
+                    <h2>{{ product.name }}</h2>
+                    <p>{{ product.price }}</p>
+                </div>
+                {% endfor %}
             </div>
-        {% endfor %}
+        </main>
     </body>
 </html>
