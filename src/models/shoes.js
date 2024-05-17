@@ -76,7 +76,6 @@ function deleteShoes(...ids) {
     }
 }
 
-console.log('test')
 const adidias = Shoe.build({
     name: 'Adidas',
     price: 420

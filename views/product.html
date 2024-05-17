@@ -19,14 +19,10 @@
                 <a href="/">Sandaler</a>
             </nav>
 
-            <div class="products grid grid-cols-3 gap-2 place-content-start">
-                {% for product in products %}
-                <div class="product">
-                    <h2 class="text-xl font-bold hover:underline"><a href="/{{ loop.index }}">{{ product.name }}</a></h2>
-                    <p>{{ product.price }}</p>
-                </div>
-                {% endfor %}
-            </div>
+            <h1 class="text-3xl font-bold">{{ product.name }} - <small>{{ product.price }}</small></h1>
+            <p>
+                {{ product.description }}
+            </p>
         </main>
     </body>
 </html>
