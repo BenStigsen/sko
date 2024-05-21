@@ -8,11 +8,11 @@
         <title>sko</title>
     </head>
     <body>
-        <header class="text-center">
+        <header class="text-center ">
             <h1><b>SHOE</b>FACTORY</h1>
         </header>
         <main class="text-center sm:w-full lg:w-1/2 ml-auto mr-auto">
-            <nav class="flex text-center justify-between">
+            <nav class=" text-gray-600 text-xl flex text-center justify-between py-6 underline">
                 <a href="/">Sneakers</a>
                 <a href="/">Højhælede</a>
                 <a href="/">Støvler</a>
@@ -22,7 +22,8 @@
             <div class="products grid grid-cols-3 gap-2 place-content-start">
                 {% for product in products %}
                 <div class="product">
-                    <img src = "https://media.istockphoto.com/id/1453810805/photo/running-shoes.jpg?s=612x612&w=0&k=20&c=kMXWxhaXOhJ8pzA_Ntis6D6QoAH4jHbV6DOkOggVIUM=">
+                    <img src = "https://media.istockphoto.com/id/1453810805/photo/running-shoes.jpg?s=612x612&w=0&k=20&c=kMXWxhaXOhJ8pzA_Ntis6D6QoAH4jHbV6DOkOggVIUM="
+                    alt="a standard image of a shoe">
                     <h2 class="text-xl font-bold hover:underline"><a href="/{{ loop.index }}">{{ product.name }}</a></h2>
                     <p>{{ product.price }}</p>
                 </div>
