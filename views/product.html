@@ -5,14 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="/assets/style.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
         <title>sko</title>
     </head>
     <body>
-        <header class="text-center ml-auto mr-auto">
+        <header class="text-center ml-auto mr-auto text-black text-6xl">
             <h1><b>SHOE</b>FACTORY</h1>
         </header>
             <div class="flex justify-end absolute top-0 right-0">
-                <img class = "size-16" src="https://www.svgrepo.com/show/511127/shopping-bag-02.svg">
+                <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown">
+                    <img class = "size-16" src="https://www.svgrepo.com/show/511127/shopping-bag-02.svg">
+                </button>
+                <div id="dropdown" class="z-10 hidden" aria-labelledby="dropdownDefaultButton">
+                    <p>Indkøb 1</p>
+                    <p>Indkøb 2</p>
+                    <p>Indkøb 3</p>
+                </div>
             </div>
         
         <main class="text-center sm:w-full lg:w-1/2 ml-auto mr-auto">
@@ -25,13 +33,13 @@
             
 
             <div class= "text-left flex">
-                <img src="https://media.istockphoto.com/id/1453810805/photo/running-shoes.jpg?s=612x612&w=0&k=20&c=kMXWxhaXOhJ8pzA_Ntis6D6QoAH4jHbV6DOkOggVIUM=">
+                <img class="max-w-md max-md:max-w-sm max-sm:max-w-64" src="https://media.istockphoto.com/id/1453810805/photo/running-shoes.jpg?s=612x612&w=0&k=20&c=kMXWxhaXOhJ8pzA_Ntis6D6QoAH4jHbV6DOkOggVIUM=">
                 <div class="rounded shadow p-4 bg-white">
                     <p>vælg farve</p>
                     <input type="radio" name="color">Rød<input type="radio" name="color">Gul<input type="radio" name="color">Grøn
                     <br><br>
                     <p>vælg størrelse</p>
-                    <input type="radio" name="size">36<input type="radio" name="size">37<input type="radio" name="size">38<input type="radio" name="size">39<br><input type="radio" name="size">40<input type="radio" name="size">41
+                    <input type="radio" name="size">36<input type="radio" name="size">37<input type="radio" name="size">38<input type="radio" name="size">39<input type="radio" name="size">40<input type="radio" name="size">41
                     <br><br>
                     <p>Pris: </p>
                     <button type="submit">Tilføj til kurv</button>
@@ -45,5 +53,6 @@
                 {{ product.description }}
             </p>
         </main>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>    
     </body>
 </html>
