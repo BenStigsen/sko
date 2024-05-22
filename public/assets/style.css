@@ -1,85 +1,93 @@
-/* necessary for some reason: https://stackoverflow.com/a/16946923 */
-input[type="radio"].color-picker {
-    display: none;
-}
-.color-picker:checked + label span {
-    transform: scale(1.25);
-}
-.color-picker:checked + label .red {
-    border: 2px solid #711313;
-}
-.color-picker:checked + label .orange {
-    border: 2px solid #873a08;
-}
-.color-picker:checked + label .yellow {
-    border: 2px solid #816102;
-}
-.color-picker:checked + label .olive {
-    border: 2px solid #505a0b;
-}
-.color-picker:checked + label .green {
-    border: 2px solid #0e4e1d;
-}
-.color-picker:checked + label .teal {
-    border: 2px solid #003633;
-}
-.color-picker:checked + label .blue {
-    border: 2px solid #103f62;
-}
-.color-picker:checked + label .violet {
-    border: 2px solid #321a64;
-}
-.color-picker:checked + label .purple {
-    border: 2px solid #501962;
-}
-.color-picker:checked + label .pink {
-    border: 2px solid #851554;
+:root {
+    --radio-size: 1.5rem;
+    --border-radius: 0.4em;
+    --radio-margin: 0.2em;
 }
 
-label {
+/* color picker */
+/* necessary for some reason: https://stackoverflow.com/a/16946923 */
+.select-color input {
+    display: none;
+}
+.select-color input:checked + label span {
+    transform: scale(1.25);
+    border: 2px solid black;
+}
+.select-color label {
     display: inline-block;
-    width: 25px;
-    height: 25px;
-    margin-right: 10px;
+    width: var(--radio-size);
+    height: var(--radio-size);
+    margin-right: var(--radio-margin);
     cursor: pointer;
 }
-label:hover span {
+.select-color label:hover span {
     transform: scale(1.25);
 }
-label span {
+.select-color label span {
     display: block;
     width: 100%;
     height: 100%;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     transition: transform 0.2s ease-in-out;
 }
-label span.red {
+.select-color label span.red {
     background: #DB2828;
 }
-label span.orange {
+.select-color label span.orange {
     background: #F2711C;
 }
-label span.yellow {
+.select-color label span.yellow {
     background: #FBBD08;
 }
-label span.olive {
+.select-color label span.olive {
     background: #B5CC18;
 }
-label span.green {
+.select-color label span.green {
     background: #21BA45;
 }
-label span.teal {
+.select-color label span.teal {
     background: #00B5AD;
 }
-label span.blue {
+.select-color label span.blue {
     background: #2185D0;
 }
-label span.violet {
+.select-color label span.violet {
     background: #6435C9;
 }
-label span.purple {
+.select-color label span.purple {
     background: #A333C8;
 }
-label span.pink {
+.select-color label span.pink {
     background: #E03997;
 }
+
+/* size picker */
+.select-size input {
+    display: none;
+}
+  
+.select-size label {
+    display: inline-block;
+    width: var(--radio-size);
+    height: var(--radio-size);
+    text-align: center;
+    vertical-align: top;
+    line-height: calc(var(--radio-size) - 0.25em);
+    margin-right: 0.2em;
+    border: 2px solid #ddd;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.select-size label:hover {
+    transform: scale(1.25);
+}
+
+.select-size input:checked + label {
+    transform: scale(1.25);
+    background: #999;
+    color: #fff;
+    border: 2px solid black;
+}
+   

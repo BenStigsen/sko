@@ -34,23 +34,31 @@
             
             <div class= "text-left flex">
                 <img class="border-2 max-w-md max-md:max-w-sm max-sm:max-w-64" src="https://media.istockphoto.com/id/1453810805/photo/running-shoes.jpg?s=612x612&w=0&k=20&c=kMXWxhaXOhJ8pzA_Ntis6D6QoAH4jHbV6DOkOggVIUM=">
-                <div class="mx-4 mt-5">
-                    <p class="font-medium">Farve</p>
-                    <input type="radio" name="color" id="red" value="red" class="color-picker" />
-                    <label for="red"><span class="red"></span></label>
+                <div class="mx-4">
+                    <p class="font-bold">Farve</p>
+                    <div class="select-color">
+                        <input type="radio" name="color" id="red" value="red" />
+                        <label for="red"><span class="red"></span></label>
 
-                    <input type="radio" name="color" id="green" class="color-picker" />
-                    <label for="green"><span class="green"></span></label>
+                        <input type="radio" name="color" id="green" />
+                        <label for="green"><span class="green"></span></label>
 
-                    <input type="radio" name="color" id="yellow" class="color-picker" />
-                    <label for="yellow"><span class="yellow"></span></label>
+                        <input type="radio" name="color" id="yellow" />
+                        <label for="yellow"><span class="yellow"></span></label>
+                    </div>
 
-                    <br><br>
-                    <p class="font-medium">Størrelse</p>
-                    <input type="radio" name="size">36<input type="radio" name="size">37<input type="radio" name="size">38<input type="radio" name="size">39<input type="radio" name="size">40<input type="radio" name="size">41
-                    <br><br>
-                    <p class="font-medium">Pris: {{ product.price }} Kr</p>
                     <br>
+                    <p class="font-bold">Størrelse</p>
+                    <div class="select-size">
+                        <input type="radio" name="size" id="s32" checked />
+                        <label for="s32">32</label>
+
+                        <input type="radio" name="size" id="s34" />
+                        <label for="s34">34</label>
+                      </div>
+                    
+                    <br><br>
+                    <p class="font-bold">Pris: {{ product.price }} Kr</p>
                     <a href="#_" class="relative inline-block px-4 py-2 font-medium group">
                         <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
                         <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
