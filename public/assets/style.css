@@ -1,0 +1,85 @@
+/* necessary for some reason: https://stackoverflow.com/a/16946923 */
+input[type="radio"].color-picker {
+    display: none;
+}
+.color-picker:checked + label span {
+    transform: scale(1.25);
+}
+.color-picker:checked + label .red {
+    border: 2px solid #711313;
+}
+.color-picker:checked + label .orange {
+    border: 2px solid #873a08;
+}
+.color-picker:checked + label .yellow {
+    border: 2px solid #816102;
+}
+.color-picker:checked + label .olive {
+    border: 2px solid #505a0b;
+}
+.color-picker:checked + label .green {
+    border: 2px solid #0e4e1d;
+}
+.color-picker:checked + label .teal {
+    border: 2px solid #003633;
+}
+.color-picker:checked + label .blue {
+    border: 2px solid #103f62;
+}
+.color-picker:checked + label .violet {
+    border: 2px solid #321a64;
+}
+.color-picker:checked + label .purple {
+    border: 2px solid #501962;
+}
+.color-picker:checked + label .pink {
+    border: 2px solid #851554;
+}
+
+label {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+label:hover span {
+    transform: scale(1.25);
+}
+label span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    transition: transform 0.2s ease-in-out;
+}
+label span.red {
+    background: #DB2828;
+}
+label span.orange {
+    background: #F2711C;
+}
+label span.yellow {
+    background: #FBBD08;
+}
+label span.olive {
+    background: #B5CC18;
+}
+label span.green {
+    background: #21BA45;
+}
+label span.teal {
+    background: #00B5AD;
+}
+label span.blue {
+    background: #2185D0;
+}
+label span.violet {
+    background: #6435C9;
+}
+label span.purple {
+    background: #A333C8;
+}
+label span.pink {
+    background: #E03997;
+}

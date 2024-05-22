@@ -32,12 +32,19 @@
                 <a href="/">Sandaler</a>
             </nav>
             
-
             <div class= "text-left flex">
                 <img class="border-2 max-w-md max-md:max-w-sm max-sm:max-w-64" src="https://media.istockphoto.com/id/1453810805/photo/running-shoes.jpg?s=612x612&w=0&k=20&c=kMXWxhaXOhJ8pzA_Ntis6D6QoAH4jHbV6DOkOggVIUM=">
                 <div class="mx-4 mt-5">
                     <p class="font-medium">Farve</p>
-                    <input type="radio" name="color">Rød<input type="radio" name="color">Gul<input type="radio" name="color">Grøn
+                    <input type="radio" name="color" id="red" value="red" class="color-picker" />
+                    <label for="red"><span class="red"></span></label>
+
+                    <input type="radio" name="color" id="green" class="color-picker" />
+                    <label for="green"><span class="green"></span></label>
+
+                    <input type="radio" name="color" id="yellow" class="color-picker" />
+                    <label for="yellow"><span class="yellow"></span></label>
+
                     <br><br>
                     <p class="font-medium">Størrelse</p>
                     <input type="radio" name="size">36<input type="radio" name="size">37<input type="radio" name="size">38<input type="radio" name="size">39<input type="radio" name="size">40<input type="radio" name="size">41
