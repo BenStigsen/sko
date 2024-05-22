@@ -37,14 +37,10 @@
                 <div class="mx-4">
                     <p class="font-bold">Farve</p>
                     <div class="select-color">
-                        <input type="radio" name="color" id="red" value="red" />
-                        <label for="red"><span class="red"></span></label>
-
-                        <input type="radio" name="color" id="green" />
-                        <label for="green"><span class="green"></span></label>
-
-                        <input type="radio" name="color" id="yellow" />
-                        <label for="yellow"><span class="yellow"></span></label>
+                        {% for color in product.colors %}
+                            <input type="radio" name="color" id="{{ color }}" value="{{ color }}" />
+                            <label for="{{ color }}"><span class="{{ color }}"></span></label>
+                        {% endfor %}
                     </div>
 
                     <br>

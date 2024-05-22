@@ -30,6 +30,9 @@
     border-radius: var(--border-radius);
     transition: transform 0.2s ease-in-out;
 }
+.select-color label span.black {
+    background: #1B1C1D;
+}
 .select-color label span.red {
     background: #DB2828;
 }
