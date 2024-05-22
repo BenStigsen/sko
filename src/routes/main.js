@@ -77,8 +77,6 @@ router.get('/:shoeId', async (req, res, next) => {
     }
 });
 
-router.get('/assets/style.css', (req, res, next) => {
-    res.sendFile('style.css', { root: 'public/assets' });
-});
+router.use(express.static('public'));
 
 module.exports = router;
