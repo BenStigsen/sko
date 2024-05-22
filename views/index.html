@@ -1,23 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="/assets/style.css">
+        {% include './templates/head.html' %}
         <title>sko</title>
     </head>
     <body>
-        <header class="text-center text-black text-6xl">
-            <h1><b>SHOE</b>FACTORY</h1>
-        </header>
+        {% include './templates/header.html' %}
+        {% include './templates/cart.html' %}
+
         <main class="text-center sm:w-full lg:w-1/2 ml-auto mr-auto">
-            <nav class=" text-gray-600 text-xl flex text-center justify-between py-6 underline">
-                <a href="/">Sneakers</a>
-                <a href="/">Højhælede</a>
-                <a href="/">Støvler</a>
-                <a href="/">Sandaler</a>
-            </nav>
+            {% include './templates/navigation.html' %}
 
             <div class="products grid grid-cols-3 gap-2 place-content-start">
                 {% for product in products %}
