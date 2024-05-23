@@ -6,6 +6,7 @@
 
 /* color picker */
 /* necessary for some reason: https://stackoverflow.com/a/16946923 */
+/* https://codepen.io/wildbeard/pen/eZZPZr */
 .select-color input {
     display: none;
 }
@@ -65,6 +66,7 @@
 }
 
 /* size picker */
+/* https://codepen.io/jpI/pen/gWJRpb?editors=1100 */
 .select-size input {
     display: none;
 }
@@ -93,4 +95,10 @@
     color: #fff;
     border: 2px solid black;
 }
-   
+
+.select-size input:disabled + label {
+    cursor: not-allowed;
+    background: #999;
+    color: #000;
+    border: 2px solid #999;
+}
