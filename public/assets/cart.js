@@ -42,12 +42,9 @@ function update() {
 
     let unique = [...new Set(products.map(JSON.stringify))].map(JSON.parse);
     for (let product of products) {
-        if (unique.find(p => p.name == product.name).count == undefined) {
-            unique.find(p => p.name == product.name).count = 1;
-        } else {
-            unique.find(p => p.name == product.name).count += 1;
-        }
-
+        let match = unique.find(p => p.name == product.name);
+        match.count = match.count || 0;
+        match.count += 1;
     }
 
     for (let product of unique) {
