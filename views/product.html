@@ -13,7 +13,7 @@
             {% include './templates/navigation.html' %}
             
             <div class= "text-left flex">
-                <img class="border-2 max-w-md max-md:max-w-sm max-sm:max-w-64" src="https://media.istockphoto.com/id/1453810805/photo/running-shoes.jpg?s=612x612&w=0&k=20&c=kMXWxhaXOhJ8pzA_Ntis6D6QoAH4jHbV6DOkOggVIUM=">
+                <img id="product-image" class="border-2 max-w-md max-md:max-w-sm max-sm:max-w-64" src="https://media.istockphoto.com/id/1453810805/photo/running-shoes.jpg?s=612x612&w=0&k=20&c=kMXWxhaXOhJ8pzA_Ntis6D6QoAH4jHbV6DOkOggVIUM=">
                 <div class="mx-4">
                     <p class="font-bold">Farve</p>
                     <div class="select-color">
@@ -31,7 +31,7 @@
 
                         <input type="radio" name="size" id="s34" disabled/>
                         <label for="s34"><b>-</b></label>
-                      </div>
+                    </div>
                     
                     <br><br>
                     <p class="font-bold">Pris: <span id="product-price">{{ product.price }}</span> Kr</p>
