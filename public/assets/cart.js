@@ -1,4 +1,4 @@
-function store(obj) {
+function storeProduct(obj) {
     let products = localStorage.getItem("products");
     if (products == null) {
         products = {"items": []};
@@ -10,7 +10,7 @@ function store(obj) {
     localStorage.setItem("products", JSON.stringify(products));
 }
 
-function load() {
+function loadProducts() {
     let products = localStorage.getItem("products");
     if (products == null) {
         return [];
@@ -19,35 +19,24 @@ function load() {
     return JSON.parse(products).items;
 }
 
-function remove(obj) {
-    let products = localStorage.getItem("products");
-    if (products == null) {
-        return;
-    }
-
-    products = JSON.parse(products);
-    products.items.splice(products.items.indexOf(obj), 1);
-    localStorage.setItem("products", JSON.stringify(products));
+function removeProduct(name) {
+    let products = loadProducts().filter(p => p.name != name);
+    localStorage.setItem("products", JSON.stringify({"items": products}));
 }
 
-function reset() {
+function resetProducts() {
     localStorage.clear();
 }
 
-function update() {
+function updateProducts() {
     let cart = document.getElementById("cart-dropdown");
     cart.innerHTML = "";
 
-    let products = load();
-
+    let products = loadProducts();
     let unique = [...new Set(products.map(JSON.stringify))].map(JSON.parse);
-    for (let product of products) {
-        let match = unique.find(p => p.name == product.name);
-        match.count = match.count || 0;
-        match.count += 1;
-    }
-
     for (let product of unique) {
+        let amount = products.filter(p => p.name == product.name).length;
+
         let title = document.createElement("p");
         title.innerHTML = product.name;
 
@@ -55,11 +44,25 @@ function update() {
         image.src = product.image;
 
         let count = document.createElement("p");
-        count.innerHTML = product.count;
+        count.innerHTML = amount;
+
+        let remove = document.createElement("button");
+        remove.innerHTML = "Remove";
+        remove.setAttribute("data-target", product.name);
+        remove.addEventListener("click", (event) => {
+            removeProduct(event.target.getAttribute("data-target"));
+            updateProducts();
+        });
+
         cart.appendChild(title);
         cart.appendChild(image);
         cart.appendChild(count);
+        cart.appendChild(remove);
     }
+
+    let total = document.createElement("p");
+    total.innerHTML = `Total: ${products.reduce((a, b) => a + Number(b.price), 0)} kr.`;
+    cart.appendChild(total);
 }
 
 document.getElementById("add-to-cart").addEventListener("click", () => {
@@ -67,7 +70,11 @@ document.getElementById("add-to-cart").addEventListener("click", () => {
     product.name = document.getElementById("product-title").innerHTML;
     product.price = document.getElementById("product-price").innerHTML;
     product.image = document.getElementById("product-image").src;
-    store(product);
+    storeProduct(product);
     
-    update();
+    updateProducts();
+})
+
+document.addEventListener("DOMContentLoaded", () => {
+    updateProducts();
 })
