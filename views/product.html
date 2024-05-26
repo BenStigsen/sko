@@ -8,11 +8,11 @@
         {% include './templates/header.html' %}
         {% include './templates/cart.html' %}
         
-        <main class="text-center sm:w-full lg:w-1/2 ml-auto mr-auto">
-            {% include './templates/navigation.html' %}
-            
-            <div class="text-left flex">
-                <img id="product-image" class="border-2 max-w-md max-md:max-w-sm max-sm:max-w-64" src="https://media.istockphoto.com/id/1453810805/photo/running-shoes.jpg?s=612x612&w=0&k=20&c=kMXWxhaXOhJ8pzA_Ntis6D6QoAH4jHbV6DOkOggVIUM=">
+        {% include './templates/navigation.html' %}
+        
+        <main class="text-center sm:w-full lg:w-1/2 ml-auto mr-auto">    
+            <div class="text-left flex ml-auto mr-auto justify-center">
+                <img id="product-image" class="border-2 rounded-lg object-cover max-w-md max-h-96 max-md:max-w-sm max-sm:max-w-64" src="/assets/products/{{ product.image }}">
                 <div class="mx-4">
                     <p class="font-bold">Farve</p>
                     <div class="select-color">
@@ -50,18 +50,6 @@
             </p>
         </main>
         
-        <footer class="mt-5 py-7 bg-black text-center text-lg text-white text-">
-            Ringstedvej 80, 4690 Haslev<br>
-            Telefon: 93 94 46 90<br>
-            Mail: <a href="mailto:hej@shoefactory.dk" class="underline">hej@shoefactory.dk</a>
-            
-            <br><br>
-            CVR: 35073035
-            <ul class="underline">
-                <li><a href="#">Handelsbetingelser</a></li>
-                <li><a href="#">Persondatapolitik</a></li> 
-                <li><a href="#">Copyright 2024 © Web-online</a></li>
-            </ul>
-        </footer>
+        {% include './templates/footer.html' %}
     </body>
 </html>

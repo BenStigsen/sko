@@ -4,73 +4,135 @@ const router = express.Router();
 const { readShoe, readShoes } = require('../models/shoes');
 
 const products = [
-    { name: 'Nike Air Force 1', price: 90.00, colors: ['red', 'blue', 'green'], description: "Oplev den tidløse stil og komfort med Nike Air Force 1. Disse ikoniske kondisko kombinerer klassisk design med moderne teknologi, hvilket gør dem perfekte til både hverdagsbrug og træning. Vælg mellem farverne rød, blå og grøn for at finde det par, der passer bedst til din stil." },
-    { name: 'Adidas Superstar', price: 80.00, colors: ['red', 'blue'], colors: ['red'], description: "Adidas Superstar er den ultimative kombination af stil og funktionalitet. Med deres karakteristiske skaltå og ikoniske tre-stribe design er disse sko en sand klassiker. Tilgængelig i farverne rød og blå, er de perfekte til enhver garderobe."},
-    { name: 'Converse Chuck Taylor All Star', price: 55.00, colors: ['red', 'black'], description: "Giv din stil et retro twist med Converse Chuck Taylor All Star. Disse sko er kendt for deres tidløse design og uovertrufne komfort. Tilgængelige i klassiske farver som rød og sort, er de et must-have for enhver sneakerentusiast."},
-    { name: 'Vans Old Skool', price: 60.00, colors: ['red', 'black'], description: "Vans Old Skool bringer skaterkulturen til dine fødder med deres slidstærke og stilfulde design. Med de ikoniske sidestriber og holdbare materialer er disse sko perfekte til både skateboarding og hverdagsbrug. Vælg mellem rød og sort for at finde din perfekte match."},
-    { name: 'New Balance 574', price: 80.00, colors: ['red', 'black'], description: "New Balance 574 kombinerer komfort og stil i en perfekt balance. Med deres bløde såler og klassiske design er disse sko ideelle til både træning og hverdagsbrug. Tilgængelige i rød og sort, så du kan finde det par, der passer til din personlige stil."},
-    { name: 'Puma Suede Classic', price: 65.00, colors: ['red', 'black'], description: "Puma Suede Classic er kendt for deres bløde ruskind og elegante design. Disse sko tilbyder både komfort og stil, hvilket gør dem perfekte til enhver lejlighed. Vælg mellem rød og sort for at opdatere din skosamling med en ægte klassiker."},
-    { name: 'Reebok Classic Leather', price: 75.00, colors: ['red', 'black'], description: "Reebok Classic Leather tilbyder en kombination af tidløst design og uovertruffen komfort. Med deres læderoverdel og polstrede såler er disse sko ideelle til både hverdagsbrug og træning. Tilgængelige i farverne rød og sort, for et klassisk look, der aldrig går af mode."},
-    { name: 'Air Jordan 1', price: 170.00, colors: ['red', 'black'], description: "Oplev den legendariske stil og præstation med Air Jordan 1. Disse ikoniske sko er designet til både mode og funktionalitet, hvilket gør dem perfekte til både basketballbanen og hverdagsbrug. Tilgængelige i klassiske farver som rød og sort, vil de med sikkerhed tilføje et strejf af elegance til din skosamling."},
-    { name: 'Yeezy Boost 350', price: 220.00, colors: ['red', 'black'], description: "Få enestående komfort og moderne stil med Yeezy Boost 350. Disse eftertragtede sko, designet af Kanye West, tilbyder både luksus og funktionalitet. Med en blød Boost-sål og et minimalistisk design, fås de i farverne rød og sort, hvilket gør dem til et stilfuldt valg til enhver lejlighed."},
-    { name: 'Asics Gel-Lyte III', price: 110.00, colors: ['red', 'black'], description: "Asics Gel-Lyte III kombinerer retro æstetik med moderne komfort. Disse sko er kendt for deres splittede pløs og fremragende støddæmpning, hvilket gør dem ideelle til både løb og hverdagsbrug. Vælg mellem farverne rød og sort for at finde dit perfekte par."},
-    { name: 'Saucony Jazz Original', price: 60.00, colors: ['red', 'black'], description: "Saucony Jazz Original er en tidløs klassiker, der kombinerer stil og komfort. Med deres retro design og lette materialer, er disse sko perfekte til daglig brug. Tilgængelige i rød og sort, vil de med sikkerhed blive en favorit i din garderobe."},
-    { name: 'Brooks Adrenaline GTS', price: 130.00, colors: ['red', 'black'], description: "Brooks Adrenaline GTS tilbyder uovertruffen støtte og komfort, hvilket gør dem perfekte til løb og træning. Disse sko er designet til at give optimal stabilitet og stødabsorbering. Vælg mellem farverne rød og sort for at finde det par, der passer bedst til din træningsrutine."},
-    { name: 'Hoka One One Clifton', price: 130.00, colors: ['red', 'black'], description: "Hoka One One Clifton er kendt for deres maksimalistiske polstring og letvægtsdesign. Disse løbesko tilbyder en blød og behagelig løbeoplevelse, ideel til både lange og korte løbeture. Tilgængelige i rød og sort, for et stilfuldt og funktionelt valg."},
-    { name: 'Mizuno Wave Rider', price: 120.00, colors: ['red', 'black'], description: "Mizuno Wave Rider kombinerer avanceret teknologi med tidløst design. Disse løbesko tilbyder fremragende stødabsorbering og støtte, hvilket gør dem ideelle til både træning og konkurrenceløb. Vælg mellem farverne rød og sort for en klassisk og funktionel stil."},
-    { name: 'Under Armour HOVR Phantom', price: 130.00, colors: ['red', 'black'], description: "Under Armour HOVR Phantom er designet til at give enestående komfort og energiretur. Med deres innovative HOVR-teknologi og strømlinede design, er disse sko perfekte til både løb og daglig brug. Tilgængelige i rød og sort for et moderne og funktionelt look."},
-    { name: 'Salomon Speedcross', price: 130.00, colors: ['red', 'black'], description: "Salomon Speedcross er den ultimative trailsko, designet til at klare de mest udfordrende terræner. Med deres aggressive trædemønster og fremragende greb, tilbyder de maksimal ydeevne og stabilitet. Vælg mellem rød og sort for en sko, der klarer alle forhold."},
-    { name: 'Merrell Moab 2', price: 120.00, colors: ['red'], description: "Merrell Moab 2 er kendt for deres holdbarhed og komfort, perfekte til vandreture og udendørs eventyr. Med deres beskyttende tåkapper og polstrede indersåler, tilbyder de overlegen støtte og beskyttelse. Tilgængelig i rød for et iøjnefaldende og funktionelt valg."},
-    { name: 'Keen Targhee II', price: 135.00, colors: ['red'], description: "Keen Targhee II er designet til at klare alle dine vandreeventyr med stil og komfort. Disse sko tilbyder fremragende vandtæt beskyttelse og støtte, hvilket gør dem perfekte til alle slags terræn. Tilgængelige i rød for et robust og stilfuldt valg."},
-    { name: 'Columbia Newton Ridge Plus II', price: 90.00, colors: ['red'], description: "Columbia Newton Ridge Plus II er din perfekte makker til udendørs eventyr. Med deres holdbare konstruktion og overlegne komfort er disse støvler ideelle til vandring og udforskning. Den røde farve giver et pop af stil til enhver tur."},
-    { name: 'Timberland White Ledge', price: 80.00, colors: ['red'], description: "Timberland White Ledge støvlerne er designet til at klare enhver udfordring. Med deres robuste konstruktion og pålidelige greb er de perfekte til vandreture og udendørs eventyr. Den røde farve tilføjer et strejf af stil til din trækketur."},
-    { name: 'Dr. Martens 1460', price: 150.00, colors: ['red'], description: "Dr. Martens 1460 støvler er en ægte klassiker med deres ikoniske design og uovertrufne holdbarhed. Disse støvler er perfekte til både hverdagsbrug og koncertgående. Den røde farve giver et edgy twist til din stil."},
-    { name: 'Clarks Desert Boot', price: 130.00, colors: ['red'], description: "Clarks Desert Boot er et tidløst ikon med deres enkle, men stilfulde design. Disse støvler tilbyder overlegen komfort og alsidighed, hvilket gør dem perfekte til enhver lejlighed. Den røde farve giver et moderne twist til det klassiske look."},
-    { name: 'UGG Classic Short', price: 170.00, colors: ['red'], description: "UGG Classic Short støvler tilbyder en luksuriøs kombination af stil og komfort. Med deres bløde fåreuld og holdbare konstruktion er de perfekte til at holde dine fødder varme og stilfulde i vintermånederne. Den røde farve tilføjer et pop af farve til din garderobe."},
-    { name: 'Frye Harness 12R', price: 328.00, colors: ['red'], description: "Frye Harness 12R støvler er en sand statement-stil med deres robuste design og tidløse udseende. Disse støvler er bygget til at holde og tilbyder en perfekt blanding af stil og funktionalitet. Den røde farve giver et dristigt udtryk til din personlige stil."},
-    { name: 'Sorel Caribou', price: 170.00, colors: ['red'], description: "Sorel Caribou støvler er din ultimative beskyttelse mod barsk vintervejr. Med deres vandtætte konstruktion og varme isolering holder de dine fødder tørre og varme i enhver situation. Den røde farve tilføjer et strejf af stil til din vintergarderobe."},
-    { name: 'LL Bean Bean Boot', price: 129.00, colors: ['red'], description: "LL Bean Bean Boots er kendt for deres uovertrufne holdbarhed og komfort. Disse støvler er perfekte til udendørs eventyr og hverdagsbrug og er bygget til at holde årtier. Den røde farve giver et klassisk udseende til enhver lejlighed."},
-    { name: 'Red Wing Iron Ranger', price: 330.00, colors: ['red'], description: "Red Wing Iron Ranger støvler er en sand klassiker med deres robuste konstruktion og tidløse design. Disse støvler er bygget til at holde og tilbyder uovertruffen komfort og holdbarhed. Den røde farve giver et strejf af personlighed til din stil."},
-    { name: 'Wolverine 1000 Mile', price: 385.00, colors: ['red'], description: "Wolverine 1000 Mile støvler er en ægte arv med deres håndværksmæssige detaljer og førsteklasses materialer. Disse støvler er bygget til at holde og tilbyder en perfekt blanding af stil og funktionalitet. Den røde farve giver et sofistikeret touch til din garderobe."},
-    { name: 'Thorogood American Heritage', price: 220.00, colors: ['red'], description: "Thorogood American Heritage støvler er håndlavet i USA med fokus på kvalitet og håndværk. Disse støvler tilbyder overlegen komfort og holdbarhed, hvilket gør dem perfekte til enhver arbejdsdag. Den røde farve giver et strejf af stil til din professionelle garderobe."},
-    { name: 'Chippewa Original', price: 270.00, colors: ['red'], description: "Chippewa Original støvler er en ægte klassiker med deres robuste konstruktion og tidløse design. Disse støvler er bygget til at holde og tilbyder uovertruffen komfort og holdbarhed. Den røde farve giver et strejf af personlighed til din stil."},
-    { name: 'Justin Original Workboots', price: 180.00, colors: ['red'], description: "Justin Original Workboots er bygget til at holde og tilbyder overlegen komfort og holdbarhed. Disse støvler er perfekte til enhver arbejdsdag og er designet til at klare enhver udfordring. Den røde farve tilføjer et strejf af stil til din arbejdsuniform."},
-    { name: 'Ariat Heritage Roper', price: 140.00, colors: ['red'], description: "Ariat Heritage Roper støvler tilbyder en perfekt blanding af stil og funktionalitet. Disse støvler er bygget til at holde og tilbyder overlegen komfort og holdbarhed. Den røde farve giver et klassisk udseende til enhver lejlighed."},
-    { name: 'Tony Lama TLX Waterproof', price: 200.00, colors: ['red'], description: "Tony Lama TLX Waterproof støvler er bygget til at klare enhver udfordring. Med deres vandtætte konstruktion og overlegen komfort er de perfekte til udendørs eventyr og arbejdsdage. Den røde farve tilføjer et strejf af stil til din garderobe"},
-    { name: 'Carhartt Rugged Flex', price: 160.00, colors: ['red'], description: "Carhartt Rugged Flex støvler er bygget til at klare enhver udfordring. Med deres holdbare konstruktion og fleksible design tilbyder de overlegen komfort og holdbarhed. Den røde farve tilføjer et strejf af stil til din arbejdsuniform."},
-    { name: 'Georgia Giant Romeo', price: 110.00, colors: ['red'], description: "Georgia Giant Romeo støvler er perfekte til arbejde eller fritid. Med deres lette konstruktion og behagelige pasform er de ideelle til enhver daglig opgave. Den røde farve giver et moderne twist til det klassiske design."},
-    { name: 'Danner Mountain Light II', price: 380.00, colors: ['red'], description: "Danner Mountain Light II støvler er en ægte klassiker med deres robuste konstruktion og tidløse design. Disse støvler er bygget til at klare enhver udfordring og tilbyder overlegen komfort og holdbarhed. Den røde farve giver et strejf af stil til din udendørs garderobe."},
-    { name: 'La Sportiva Wildcat', price: 130.00, colors: ['red'], description: "La Sportiva Wildcat skoene er designet til at give dig overlegen trækkraft og stabilitet på enhver sti. Med deres lette konstruktion og polstrede såler er de perfekte til trail running og vandreture. Den røde farve tilføjer et pop af farve til din træningsgarderobe."},
-    { name: 'Scarpa Zodiac Plus GTX', price: 280.00, colors: ['red'], description: "Scarpa Zodiac Plus GTX støvler er din ultimative følgesvend på vandreture og bjergbestigninger. Med deres vandtætte konstruktion og robuste greb giver de dig tillid til at tackle enhver sti. Den røde farve tilføjer et strejf af stil til din udendørs udstyr."},
-    { name: 'Salewa Mountain Trainer', price: 200.00, colors: ['red'], description: "Salewa Mountain Trainer skoene er designet til at give dig overlegen trækkraft og stabilitet på stier og bjerge. Med deres robuste konstruktion og polstrede såler er de perfekte til vandreture og bjergbestigninger. Den røde farve tilføjer et strejf af stil til din udendørs garderobe."},
-    { name: 'Lowa Renegade GTX', price: 240.00, colors: ['red'], description: "Lowa Renegade GTX støvler er bygget til at klare enhver udfordring på stien. Med deres vandtætte konstruktion og polstrede såler giver de dig komfort og stabilitet på enhver vandretur. Den røde farve tilføjer et moderne twist til det klassiske design."},
-    { name: 'Altra Lone Peak', price: 130.00, colors: ['red'], description: "Altra Lone Peak skoene er designet til at give dig overlegen trækkraft og komfort på stier og bjerge. Med deres lette konstruktion og brede tåkasse giver de dig plads til at sprede tæerne og bevæge dig naturligt. Den røde farve tilføjer et strejf af stil til din udendørs garderobe."},
-    { name: 'Brooks Cascadia', price: 130.00, colors: ['red'], description: "Brooks Cascadia skoene er designet til at give dig overlegen trækkraft og stabilitet på stier og skovveje. Med deres robuste konstruktion og polstrede såler er de perfekte til trail running og vandreture. Den røde farve tilføjer et pop af farve til din træningsgarderobe."},
-    { name: 'Inov-8 Roclite', price: 140.00, colors: ['red'], description: "Inov-8 Roclite skoene er designet til at give dig overlegen trækkraft og fleksibilitet på stier og terræn. Med deres lette konstruktion og aggressive knopper giver de dig tillid til at tackle enhver sti. Den røde farve tilføjer et strejf af stil til din træningsgarderobe."},
-    { name: 'Nike Zoom Terra Kiger', price: 140.00, colors: ['red'], description: "Nike Zoom Terra Kiger skoene er designet til at give dig fart og stabilitet på stier og terræn. Med deres lette konstruktion og responsiv dæmpning giver de dig fart til at tackle enhver sti. Den røde farve tilføjer et moderne twist til dit træningsudstyr."},
-    { name: 'Salomon Speedcross', price: 130.00, colors: ['red'], description: "Salomon Speedcross skoene er designet til at give dig overlegen trækkraft og stabilitet på stier og terræn. Med deres aggressive knopper og polstrede såler er de perfekte til trail running og vandreture. Den røde farve tilføjer et pop af farve til din træningsgarderobe."},
-    { name: 'La Sportiva Bushido', price: 130.00, colors: ['red'], description: "La Sportiva Bushido skoene er designet til at give dig fart og stabilitet på stier og terræn. Med deres lette konstruktion og aggressivt mønster giver de dig tillid til at tackle enhver sti. Den røde farve tilføjer et strejf af stil til din træningsgarderobe."},
-    { name: 'Adidas Terrex Swift R2 GTX', price: 135.00, colors: ['red'], description: "Adidas Terrex Swift R2 GTX skoene er designet til at give dig overlegen trækkraft og stabilitet på stier og terræn. Med deres vandtætte konstruktion og polstrede såler er de perfekte til trail running og vandreture. Den røde farve tilføjer et moderne twist til dit træningsudstyr."},
-    { name: 'Merrell Moab 3', price: 120.00, colors: ['red'], description: "Merrell Moab 3 skoene er designet til at give dig komfort og stabilitet på stier og terræn. Med deres åndbare overdel og støttende såler er de"}
+    { 
+        name: 'Sort Plateau Stilet', 
+        image: 'stilettos/1.jpg', 
+        price: 499.50, 
+        colors: ['black', 'red'], 
+        description: "Sort Plateau sandal i ruskindslook med en hælhøjde på 9,5 cm og en plateauhøjde på 3 cm. Disse stilfulde sandaler er designet til at give dig ekstra højde og elegance. Perfekte til formelle begivenheder eller en aften i byen, de kombinerer komfort med et sofistikeret look. Den robuste hæl og plateau sikrer, at du kan gå komfortabelt hele natten. Normal i størrelse, så vælg din sædvanlige skostørrelse." 
+    },
+    { 
+        name: 'Sort Plateau Stilet', 
+        image: 'stilettos/2.jpg', 
+        price: 350.00, 
+        colors: ['black', 'blue'], 
+        description: "Disse højhælede sorte plateau sandaler er fremstillet i ruskindslook og har smukke remme fortil samt en lynlås bagtil for nem påtagning. Sandalerne er designet til at være både elegante og komfortable, hvilket gør dem ideelle til både casual og formelle lejligheder. Den høje hæl tilføjer en dramatisk effekt, mens plateauet sikrer stabilitet og komfort. Tilgængelig i flere farver for at matche dit outfit perfekt." 
+    },
+
+    { 
+        name: 'Sort Sneakers', 
+        image: 'sneakers/1.jpg', 
+        price: 300.00, 
+        colors: ['black'], 
+        description: "Disse super fine sorte sneakers tilbyder en fantastisk pasform og en rigtig god sål, der giver optimal komfort hele dagen. De er alsidige nok til at blive båret med både jeans og kjoler, hvilket gør dem perfekte til både hverdagsbrug og mere formelle begivenheder. Sneakersene er almindelige i størrelsen, så du kan vælge din sædvanlige skostørrelse. Deres stilfulde design kombineret med praktiske funktioner gør dem til et must-have i enhver garderobe." 
+    },
+    { 
+        name: 'Sneakers', 
+        image: 'sneakers/2.jpg', 
+        price: 250.00, 
+        colors: ['black', 'red', 'white', 'grey'], 
+        description: "Disse letvægtige sneakers med snørrebånd er designet med en fleksibel sål og en god pasform, der sikrer maksimal komfort. De er perfekte til både hverdag og festlige lejligheder, hvilket gør dem til en alsidig tilføjelse til din skosamling. Sneakersene er almindelige i størrelsen og er tilgængelige i flere farver, så du kan finde det perfekte par til dit outfit. De kombinerer stil og funktionalitet, hvilket gør dem ideelle til ethvert formål." 
+    },
+    { 
+        name: 'Lilla Sneakers', 
+        image: 'sneakers/3.jpg', 
+        price: 300.00, 
+        colors: ['blue', 'red'], 
+        description: "Disse super fine lilla sneakers tilbyder en fantastisk pasform og en rigtig god sål, der giver optimal komfort hele dagen. De kan nemt matches med både jeans og kjoler, hvilket gør dem perfekte til både hverdagsbrug og mere formelle begivenheder. Sneakersene er almindelige i størrelsen, så du kan vælge din sædvanlige skostørrelse. Deres unikke lilla farve tilføjer et spændende element til ethvert outfit, og de er lige så komfortable, som de er stilfulde." 
+    },
+    { 
+        name: 'Sort Sneakers', 
+        image: 'sneakers/4.jpg', 
+        price: 250.00, 
+        colors: ['black'], 
+        description: "Disse flotte sorte sneakers tilbyder en super god pasform og er designet med en ruskindslook overdel og en lille kant af fin lak detalje. De kan bruges til både hverdag og fest, hvilket gør dem til en alsidig tilføjelse til din garderobe. Sneakersene er små i størrelsen, så det anbefales at vælge en størrelse større end din sædvanlige. Deres elegante design kombineret med komfortable funktioner gør dem perfekte til enhver anledning." 
+    },
+
+    { 
+        name: 'Støvle med pelskant', 
+        image: 'boots/1.jpg', 
+        price: 350.00, 
+        colors: [], 
+        description: "Disse dejlige varme sorte støvler med pelskant og lækkert foer er perfekte til kolde vinterdage. De har en god rustik sål, der sikrer et solidt greb på glatte overflader. Lavet af imiteret ruskind og pels, tilbyder disse støvler både stil og funktionalitet. De er ideelle til vintervejr og holder dine fødder varme og komfortable hele dagen. Deres klassiske design gør dem nemme at parre med forskellige outfits." 
+    },
+    { 
+        name: 'Khaki støvle', 
+        image: 'boots/2.jpg', 
+        price: 350.00, 
+        colors: [], 
+        description: "Disse dejlige varme foret vinterstøvler med ombuk giver dig mulighed for at bære dem med eller uden pelskant, afhængigt af dit look. De har en god rustik sål, der passer perfekt til vintervejret og sikrer et solidt greb på glatte overflader. Støvlerne er lavet til at holde dine fødder varme og komfortable i kolde forhold, hvilket gør dem til en praktisk og stilfuld tilføjelse til din vintergarderobe." 
+    },
+    { 
+        name: 'Sort støvle', 
+        image: 'boots/3.jpg', 
+        price: 350.00, 
+        colors: ['black'], 
+        description: "Denne stilfulde sorte støvle er designet til at være både funktionel og trendy. Med en holdbar konstruktion og et komfortabelt indre, er disse støvler perfekte til både hverdagsbrug og mere formelle begivenheder. Deres tidløse design gør dem til en alsidig tilføjelse til enhver garderobe, mens deres robuste ydre sikrer langvarig brug." 
+    },
+    { 
+        name: 'Sort støvle med spænde', 
+        image: 'boots/4.jpg', 
+        price: 300.00, 
+        colors: ['black', 'brown'], 
+        description: "Disse elegante sorte støvler med spændedetaljer kombinerer mode og funktionalitet. De er designet til at give både komfort og stil, hvilket gør dem perfekte til både hverdagsbrug og særlige begivenheder. Den robuste konstruktion sikrer holdbarhed, mens spænderne tilføjer et trendy touch til dit outfit. Fås i både sort og brun for at matche forskellige looks." 
+    },
+    { 
+        name: 'Khaki støvle med rem', 
+        image: 'boots/5.jpg', 
+        price: 300.00, 
+        colors: ['black', 'brown'], 
+        description: "Disse trendy khaki støvler med rem detaljer tilbyder en moderne stil og en robust konstruktion, ideelle til både daglig brug og udendørs eventyr. De er designet til at være komfortable og holdbare, hvilket gør dem til et praktisk valg for enhver, der ønsker både stil og funktion. Tilgængelige i sort og brun, så du kan vælge den farve, der bedst passer til din garderobe." 
+    },
+
+    { 
+        name: 'Sort Plateau sandal', 
+        image: 'stilettos/1.jpg', 
+        price: 499.50, 
+        colors: ['black', 'red'], 
+        description: "Disse sorte plateau sandaler i ruskindslook har en hælhøjde på 9,5 cm og en plateauhøjde på 3 cm. De er designet til at tilføje ekstra højde og stil til dit outfit, hvilket gør dem ideelle til både fester og formelle arrangementer. Sandalerne har en robust hæl og et komfortabelt plateau, der sikrer, at du kan danse hele natten uden ubehag. Normal i størrelse, så vælg din sædvanlige skostørrelse." 
+    },
+    { 
+        name: 'Sort Plateau sandal', 
+        image: 'stilettos/2.jpg', 
+        price: 350.00, 
+        colors: ['black', 'blue'], 
+        description: "Disse højhælede sorte plateau sandaler i ruskindslook har smukke remme fortil og en praktisk lynlås bagtil. Designet til at kombinere komfort med høj stil, er disse sandaler perfekte til at løfte dit look til næste niveau. Den høje hæl tilføjer en dramatisk effekt, mens plateauet sikrer stabilitet og komfort. Tilgængelig i flere farver for at matche dit outfit perfekt." 
+    },
 ];
 
-// for (let product of products) {
-//     product.description = `Lorem i Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse porta condimentum sapien, eget euismod massa maximus non. Duis vehicula et nisl a fermentum. Nunc porttitor elit consectetur, commodo mi id, consequat leo. Phasellus sem magna, cursus a libero et, porta tempus purus. Curabitur sit amet justo a urna viverra vestibulum eu nec mi. Maecenas dui nulla, fermentum rhoncus lobortis quis, imperdiet sed neque. Suspendisse id nibh magna. Cras sed felis id lectus placerat convallis. Quisque quis semper mi. Phasellus placerat lacinia bibendum.
 
-//     Nulla facilisi. Sed placerat ac sem in rutrum. Duis tortor odio, lobortis id interdum eu, tristique faucibus diam. Nullam ultricies fermentum est vel viverra. Donec convallis ex arcu, placerat ornare mauris euismod et. Maecenas viverra sit amet lacus ut tristique. Duis in erat vel sapien sagittis mollis. Nulla placerat dolor a ligula consectetur congue. Nam ultricies ligula ultrices odio hendrerit blandit.
-    
-//     Sed pharetra viverra tellus, non porta libero feugiat ut. Curabitur et pulvinar dui. Suspendisse justo erat, tempor sed justo in, accumsan fringilla augue. Duis eget eros cursus ligula tincidunt hendrerit. Cras non velit leo. Nullam a pellentesque quam. Sed et tortor sagittis, pulvinar nibh sit amet, egestas ligula.
-    
-//     Aenean interdum tellus odio, vel consectetur nunc porta vitae. Ut vel eros ligula. Aenean sollicitudin lectus eu tincidunt pulvinar. Integer euismod viverra sem, ac semper urna suscipit vitae. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus cursus nunc sit amet ornare vulputate. Donec feugiat, risus vel sagittis faucibus, tellus mauris maximus ligula, vitae blandit nibh leo nec elit. Nam quis elit eget purus volutpat ultrices at et dolor. Nunc in sollicitudin velit, vitae feugiat turpis. Vestibulum et dolor a erat congue tincidunt quis hendrerit lectus. Phasellus vestibulum vel dolor dapibus rhoncus. Nullam venenatis, enim in faucibus scelerisque, massa dolor convallis dolor, at consequat risus mi sed magna. Duis facilisis quam erat, vitae vulputate purus ornare ut. Proin libero mauris, ornare ut varius quis, volutpat a ligula. Nullam dapibus eros risus, et euismod quam aliquam vel.`;
-// }
+for (let i = 0; i < products.length; i += 1) {
+    products[i].id = i;
+}
 
 router.get('/', async (req, res, next) => {
     res.render('index.html', { products });
 });
 
+router.get('/category/:category', async (req, res, next) => {
+    const category = req.params.category;
+    switch (category) {
+        case 'stilettos':
+            res.render('index.html', { products: products.slice(0, 2) });
+            break;
+        case 'sneakers':
+            res.render('index.html', { products: products.slice(2, 6) });
+            break;
+        case 'boots':
+            res.render('index.html', { products: products.slice(6, 11) });
+            break;
+        case 'sandals':
+            res.render('index.html', { products: products.slice(11, 13) });
+            break;
+        default:
+            res.render('index.html', { products });
+            break;
+    }
+});
+
 router.get('/:shoeId', async (req, res, next) => {
     try {
-        const product = products[req.params.shoeId - 1];
+        const product = products[req.params.shoeId];
         res.render('product.html', { product });
     } catch {
         res.status(404).json({ message: 'Shoe not found!' });

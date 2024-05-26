@@ -55,6 +55,8 @@ function updateProducts() {
 
     let totalPrice = 0;
     let products = loadProducts();
+
+    let container = document.createElement("div");
     for (let [key, product] of products) {
         totalPrice += Number(product.price) * product.amount;
 

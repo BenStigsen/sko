@@ -14,12 +14,14 @@
             <div class="products grid grid-cols-3 gap-2 place-content-start">
                 {% for product in products %}
                 <div class="product">
-                    <img src="https://media.istockphoto.com/id/1453810805/photo/running-shoes.jpg?s=612x612&w=0&k=20&c=kMXWxhaXOhJ8pzA_Ntis6D6QoAH4jHbV6DOkOggVIUM=" alt="a standard image of a shoe">
+                    <a href="/{{ product.id }}"><img src="/assets/products/{{ product.image }}" class="rounded-lg object-cover h-72 w-72 hover:scale-105 duration-75 ml-auto mr-auto"></a>
                     <h2 class="text-xl font-bold hover:underline"><a href="/{{ loop.index }}">{{ product.name }}</a></h2>
                     <p>{{ product.price }}</p>
                 </div>
                 {% endfor %}
             </div>
         </main>
+
+        {% include './templates/footer.html' %}
     </body>
 </html>
