@@ -73,7 +73,7 @@ function updateProducts() {
         let amount = document.createElement("input");
         amount.type = "number";
         amount.value = product.amount;
-        amount.classList.add("bg-gray-50", "border", "text-sm", "rounded-lg", "focus:ring-blue-500", "focus:border-blue-500", "block", "w-14", "h-6", "p-1");
+        amount.classList.add("bg-gray-50", "border-2", "text-sm", "rounded-lg", "focus:ring-blue-500", "focus:border-blue-500", "block", "w-14", "h-6", "p-1");
         amount.setAttribute("data-target", product.name);
         amount.addEventListener("change", (event) => {
             let product = loadProduct(event.target.getAttribute("data-target"));
@@ -109,16 +109,18 @@ function updateProducts() {
     cart.appendChild(total);
 }
 
-document.getElementById("add-to-cart").addEventListener("click", () => {
-    let product = {};
-    product.name = document.getElementById("product-title").innerHTML;
-    product.price = document.getElementById("product-price").innerHTML;
-    product.image = document.getElementById("product-image").src;
-    product.amount = 1;
-    addProduct(product);
-    
-    updateProducts();
-})
+try {
+    document.getElementById("add-to-cart").addEventListener("click", () => {
+        let product = {};
+        product.name = document.getElementById("product-title").innerHTML;
+        product.price = document.getElementById("product-price").innerHTML;
+        product.image = document.getElementById("product-image").src;
+        product.amount = 1;
+        addProduct(product);
+        
+        updateProducts();
+    })
+} catch {}
 
 document.addEventListener("DOMContentLoaded", () => {
     updateProducts();
