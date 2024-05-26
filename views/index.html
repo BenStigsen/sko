@@ -8,9 +8,9 @@
         {% include './templates/header.html' %}
         {% include './templates/cart.html' %}
 
-        <main class="text-center sm:w-full lg:w-1/2 ml-auto mr-auto">
-            {% include './templates/navigation.html' %}
+        {% include './templates/navigation.html' %}
 
+        <main class="text-center max-sm:w-full lg:w-1/2 ml-auto mr-auto">
             <div class="products grid grid-cols-3 gap-2 place-content-start">
                 {% for product in products %}
                 <div class="product">
