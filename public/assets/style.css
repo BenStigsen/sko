@@ -4,6 +4,13 @@
     --radio-margin: 0.2em;
 }
 
+/* cart */
+#cart-dropdown img {
+    max-width: 8em;
+    display: flex;
+    float: left;
+}
+
 /* color picker */
 /* necessary for some reason: https://stackoverflow.com/a/16946923 */
 /* https://codepen.io/wildbeard/pen/eZZPZr */
