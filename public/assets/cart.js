@@ -1,27 +1,40 @@
-function storeProduct(obj) {
-    let products = localStorage.getItem("products");
-    if (products == null) {
-        products = {"items": []};
-    } else {
-        products = JSON.parse(products);
-        products.items.push(obj);
-    }
+/* CONCEPT CODE
+    This is to simulate the behaviour of a shopping cart, with the following features:
+        - Add to cart
+        - Remove from cart
+        - Reset cart
+        - Change amount of product <x> in cart
 
-    localStorage.setItem("products", JSON.stringify(products));
+    This is not supposed to be used in production, but only to show the expected production behaviour.
+*/
+
+function storeMap(map) {
+    localStorage.products = JSON.stringify([...map]);
+}
+
+function storeProduct(obj) {
+    let products = loadProducts();
+
+    let product = products.get(obj.name) ?? obj;
+    product.amount = product.amount ? product.amount + 1 : 1;
+
+    products.set(product.name, product);
+    storeMap(products);
 }
 
 function loadProducts() {
-    let products = localStorage.getItem("products");
-    if (products == null) {
-        return [];
-    }
-    
-    return JSON.parse(products).items;
+    let products = localStorage.products ?? '""';
+    return new Map(JSON.parse(products));
+}
+
+function loadProduct(name) {
+    return loadProducts().get(name);
 }
 
 function removeProduct(name) {
-    let products = loadProducts().filter(p => p.name != name);
-    localStorage.setItem("products", JSON.stringify({"items": products}));
+    let products = loadProducts();
+    products.delete(name);
+    storeMap(products);
 }
 
 function resetProducts() {
@@ -32,21 +45,27 @@ function updateProducts() {
     let cart = document.getElementById("cart-dropdown");
     cart.innerHTML = "";
 
+    let totalPrice = 0;
     let products = loadProducts();
-    let unique = [...new Set(products.map(JSON.stringify))].map(JSON.parse);
-    for (let product of unique) {
-        let amount = products.filter(p => p.name == product.name).length;
+    for (let [key, product] of products) {
+        totalPrice += Number(product.price) * product.amount;
 
         let title = document.createElement("p");
-        title.innerHTML = product.name;
+        title.innerHTML = key;
 
         let image = document.createElement("img");
         image.src = product.image;
 
-        let count = document.createElement("p");
-        count.innerHTML = amount;
+        let amount = document.createElement("input");
+        amount.type = "number";
+        amount.value = product.amount;
+        amount.setAttribute("data-target", product.name);
+        amount.addEventListener("change", (event) => {
+            loadProduct(event.target.getAttribute("data-target")).amount = event.target.value;
+            updateProducts();
+        });
 
-        let remove = document.createElement("button");
+        let remove = document.createElement("a");
         remove.innerHTML = "Remove";
         remove.setAttribute("data-target", product.name);
         remove.addEventListener("click", (event) => {
@@ -56,12 +75,12 @@ function updateProducts() {
 
         cart.appendChild(title);
         cart.appendChild(image);
-        cart.appendChild(count);
+        cart.appendChild(amount);
         cart.appendChild(remove);
     }
 
     let total = document.createElement("p");
-    total.innerHTML = `Total: ${products.reduce((a, b) => a + Number(b.price), 0)} kr.`;
+    total.innerHTML = `Total: ${totalPrice} kr.`;
     cart.appendChild(total);
 }
 
