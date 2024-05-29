@@ -7,7 +7,7 @@ const products = [
     { 
         name: 'Sort Plateau Stilet', 
         image: 'stilettos/1.jpg', 
-        price: 499.50, 
+        price: 500.00, 
         colors: ['black', 'red'], 
         description: "Sort Plateau sandal i ruskindslook med en hælhøjde på 9,5 cm og en plateauhøjde på 3 cm. Disse stilfulde sandaler er designet til at give dig ekstra højde og elegance. Perfekte til formelle begivenheder eller en aften i byen, de kombinerer komfort med et sofistikeret look. Den robuste hæl og plateau sikrer, at du kan gå komfortabelt hele natten. Normal i størrelse, så vælg din sædvanlige skostørrelse." 
     },
@@ -87,7 +87,7 @@ const products = [
     { 
         name: 'Sort Plateau sandal', 
         image: 'stilettos/1.jpg', 
-        price: 499.50, 
+        price: 500.00, 
         colors: ['black', 'red'], 
         description: "Disse sorte plateau sandaler i ruskindslook har en hælhøjde på 9,5 cm og en plateauhøjde på 3 cm. De er designet til at tilføje ekstra højde og stil til dit outfit, hvilket gør dem ideelle til både fester og formelle arrangementer. Sandalerne har en robust hæl og et komfortabelt plateau, der sikrer, at du kan danse hele natten uden ubehag. Normal i størrelse, så vælg din sædvanlige skostørrelse." 
     },
