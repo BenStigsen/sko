@@ -89,7 +89,7 @@
     border: 2px solid #ddd;
     border-radius: var(--border-radius);
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.15s ease-in-out;
 }
 
 .select-size label:hover {
