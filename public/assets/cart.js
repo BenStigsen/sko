@@ -66,6 +66,7 @@ function updateProducts() {
 
         let image = document.createElement("img");
         image.src = product.image;
+        image.setAttribute("alt", product.name);
         
         let title = document.createElement("p");
         title.innerHTML = key;
