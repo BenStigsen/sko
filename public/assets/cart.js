@@ -59,7 +59,6 @@ function updateProducts() {
     let container = document.createElement("div");
     container.classList.add("flex", "flex-col");
     for (let [key, product] of products) {
-
         totalPrice += Number(product.price) * product.amount;
 
         let div = document.createElement("div");
@@ -79,6 +78,8 @@ function updateProducts() {
         amount.value = product.amount;
         amount.classList.add("bg-gray-50", "border-2", "text-sm", "rounded-lg", "focus:ring-blue-500", "focus:border-blue-500", "block", "w-14", "h-6", "p-1");
         amount.setAttribute("data-target", product.name);
+        amount.setAttribute("aria-label", "Amount of " + product.name);
+        amount.setAttribute("title", "Amount of " + product.name);
         amount.addEventListener("change", (event) => {
             let product = loadProduct(event.target.getAttribute("data-target"));
             product.amount = event.target.value;
@@ -90,6 +91,8 @@ function updateProducts() {
         remove.src = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngitem.com%2Fpimgs%2Fm%2F9-93082_transparent-stop-sign-png-does-red-circle-with.png&f=1&nofb=1&ipt=120ae7219d909e98c9749453e54c53e235b7211207a4c605fd3c044f48c7db71&ipo=images";
         remove.classList.add("w-5", "h-5", "cursor-pointer", "hover:text-red-500", "hover:scale-110", "absolute", "top-1", "right-1");
         remove.setAttribute("data-target", product.name);
+        remove.setAttribute("aria-label", "Remove " + product.name);
+        remove.setAttribute("title", "Remove " + product.name);
         remove.addEventListener("click", (event) => {
             removeProduct(event.target.getAttribute("data-target"));
             updateProducts();
