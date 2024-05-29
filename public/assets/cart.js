@@ -57,7 +57,9 @@ function updateProducts() {
     let products = loadProducts();
 
     let container = document.createElement("div");
+    container.classList.add("flex", "flex-col");
     for (let [key, product] of products) {
+
         totalPrice += Number(product.price) * product.amount;
 
         let div = document.createElement("div");
@@ -98,14 +100,15 @@ function updateProducts() {
         div.appendChild(title);
         div.appendChild(price);
         div.appendChild(amount);
-        cart.appendChild(div);
-        cart.appendChild(document.createElement("br"));
-
+        container.appendChild(div);
+        container.appendChild(document.createElement("br"));
+        
         let hr = document.createElement("hr");
         hr.classList.add("mb-2");
-        cart.appendChild(hr);
+        container.appendChild(hr);
     }
-
+    
+    cart.appendChild(container);
     let total = document.createElement("p");
     total.innerHTML = `Total: ${totalPrice} kr.`;
     cart.appendChild(total);
