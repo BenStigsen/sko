@@ -84,7 +84,7 @@
     height: var(--radio-size);
     text-align: center;
     vertical-align: top;
-    line-height: calc(var(--radio-size) - 0.25em);
+    line-height: calc(var(--radio-size) - 0.3em);
     margin-right: 0.2em;
     border: 2px solid #ddd;
     border-radius: var(--border-radius);
@@ -98,8 +98,8 @@
 
 .select-size input:checked + label {
     transform: scale(1.25);
-    background: #999;
-    color: #fff;
+    /*background: #999;*/
+    color: #000;
     border: 2px solid black;
 }
 
