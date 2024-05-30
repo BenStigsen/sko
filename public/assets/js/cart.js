@@ -141,4 +141,9 @@ document.getElementById("add-to-cart")?.addEventListener("click", () => {
     updateProducts();
 });
 
-updateProducts();
+try {
+    updateProducts();
+} catch (e) {
+    console.log(e);
+    resetProducts();
+}
