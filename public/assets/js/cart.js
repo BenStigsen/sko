@@ -130,19 +130,15 @@ function updateProducts() {
     cart.appendChild(div);
 }
 
-try {
-    document.getElementById("add-to-cart").addEventListener("click", () => {
-        let product = {};
-        product.name = document.getElementById("product-title").innerText;
-        product.price = document.getElementById("product-price").innerText;
-        product.image = document.getElementById("product-image").src;
-        product.amount = 1;
-        addProduct(product);
-        
-        updateProducts();
-    })
-} catch {}
-
-document.addEventListener("DOMContentLoaded", () => {
+document.getElementById("add-to-cart")?.addEventListener("click", () => {
+    let product = {};
+    product.name = document.getElementById("product-title").innerText;
+    product.price = document.getElementById("product-price").innerText;
+    product.image = document.getElementById("product-image").src;
+    product.amount = 1;
+    addProduct(product);
+    
     updateProducts();
-})
+});
+
+updateProducts();
