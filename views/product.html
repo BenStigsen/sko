@@ -7,9 +7,9 @@
     <body>
         {% include './templates/header.html' %}
         
-        <main class="text-center sm:w-full lg:w-1/2 ml-auto mr-auto">    
+        <main class="text-center w-5/6 lg:w-1/2 ml-auto mr-auto">    
             <div class="text-left flex">
-                <img id="product-image" alt="{{ product.name }}" class="border-2 rounded-lg object-cover max-w-md max-h-96 max-md:max-w-sm max-sm:max-w-64" src="/assets/img/products/{{ product.image }}">
+                <img id="product-image" alt="{{ product.name }}" class="border-2 rounded-lg object-fit max-w-md max-h-96 max-md:max-w-64 max-md:max-h-64 max-sm:max-w-48 max-sm:max-h-58" src="/assets/img/products/{{ product.image }}">
                 <div class="mx-4">
                     <p class="font-bold">Farve</p>
                     <div class="select-color">
