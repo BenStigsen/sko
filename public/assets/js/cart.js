@@ -86,8 +86,8 @@ function updateProducts() {
         });
 
         let remove = document.createElement("img");
-        remove.src = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.pngitem.com%2Fpimgs%2Fm%2F9-93082_transparent-stop-sign-png-does-red-circle-with.png&f=1&nofb=1&ipt=120ae7219d909e98c9749453e54c53e235b7211207a4c605fd3c044f48c7db71&ipo=images";
-        remove.classList.add("w-5", "h-5", "cursor-pointer", "hover:text-red-500", "hover:scale-110", "absolute", "top-1", "right-1");
+        remove.src = "/assets/img/remove.png";
+        remove.classList.add("w-5", "h-5", "max-sm:w-8", "max-sm:h-8", "cursor-pointer", "hover:text-red-500", "hover:scale-110", "absolute", "top-1", "right-1");
         remove.setAttribute("data-target", product.name);
         remove.setAttribute("aria-label", "Remove " + product.name);
         remove.setAttribute("alt", "Remove " + product.name);
