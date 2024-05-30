@@ -6,12 +6,9 @@
     </head>
     <body>
         {% include './templates/header.html' %}
-        {% include './templates/cart.html' %}
-        
-        {% include './templates/navigation.html' %}
         
         <main class="text-center sm:w-full lg:w-1/2 ml-auto mr-auto">    
-            <div class="text-left flex ml-auto mr-auto justify-center">
+            <div class="text-left flex">
                 <img id="product-image" alt="{{ product.name }}" class="border-2 rounded-lg object-cover max-w-md max-h-96 max-md:max-w-sm max-sm:max-w-64" src="/assets/products/{{ product.image }}">
                 <div class="mx-4">
                     <p class="font-bold">Farve</p>
@@ -22,7 +19,6 @@
                         {% endfor %}
                     </div>
 
-                    <br>
                     <p class="font-bold">Størrelse</p>
                     <div class="select-size">
                         <input type="radio" name="size" id="s36" />
@@ -50,10 +46,18 @@
                         <label for="s43"><b>43</b></label>
                     </div>
                     
-                    <br><br>
+                    <br>
                     <p class="font-bold">Pris: <span id="product-price">{{ product.price }}</span> kr.</p>
                     <button id="add-to-cart" class="border-2 rounded-lg p-2 hover:border-black hover:scale-105 duration-150">Føj til kurv</button>
                 </div>
+            </div>
+
+            <div id="product-rating" class="flex">
+                <img src="/assets/images/star-filled.png" class="w-8">
+                <img src="/assets/images/star-filled.png" class="w-8">
+                <img src="/assets/images/star-filled.png" class="w-8">
+                <img src="/assets/images/star-filled.png" class="w-8">
+                <img src="/assets/images/star.png" class="w-8">
             </div>
             
             <h2 id="product-title" class="text-left mt-5 text-3xl font-bold">{{ product.name }}</h1>
