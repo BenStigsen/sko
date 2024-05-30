@@ -11,7 +11,7 @@
             <div class="products grid grid-cols-3 gap-2 place-content-start">
                 {% for product in products %}
                 <div class="product group">
-                    <a href="/{{ product.id }}"><img src="/assets/products/{{ product.image }}" alt="{{ product.name }}" class="max-sm:w-32 max-sm:h-32 max-md:w-52 max-md:h-52 h-72 w-72 rounded-lg object-fit group-hover:scale-105 duration-75 ml-auto mr-auto"></a>
+                    <a href="/{{ product.id }}"><img src="/assets/img/products/{{ product.image }}" alt="{{ product.name }}" class="max-sm:w-32 max-sm:h-32 max-md:w-52 max-md:h-52 h-72 w-72 rounded-lg object-fit group-hover:scale-105 duration-75 ml-auto mr-auto"></a>
                     <h2 class="text-xl font-bold group-hover:underline"><a href="/{{ loop.index }}">{{ product.name }}</a></h2>
                     <p>{{ product.price }} kr.</p>
                 </div>

@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-const { readShoe, readShoes } = require('../models/shoes');
-
 const products = [
     { 
         name: 'Sort Plateau Stilet', 
@@ -133,6 +131,7 @@ router.get('/category/:category', async (req, res, next) => {
 router.get('/:shoeId', async (req, res, next) => {
     try {
         const product = products[req.params.shoeId];
+        if (!product) throw new Error();
         res.render('product.html', { product, products });
     } catch {
         res.status(404).json({ message: 'Shoe not found!' });
