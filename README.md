@@ -1,2 +1,9 @@
-# Dummy Data for  database
-run: ```sqlite3 ./database/database.sqlite3 < ./database/setup.sql```
+# Running
+```
+git clone https://github.com/benstigsen/sko
+cd sko
+npm install
+npm run start
+```
+
+Siden kan tilgås på `localhost:3000`
