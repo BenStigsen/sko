@@ -133,7 +133,7 @@ router.get('/category/:category', async (req, res, next) => {
 router.get('/:shoeId', async (req, res, next) => {
     try {
         const product = products[req.params.shoeId];
-        res.render('product.html', { product });
+        res.render('product.html', { product, products });
     } catch {
         res.status(404).json({ message: 'Shoe not found!' });
     }
