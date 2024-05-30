@@ -39,7 +39,7 @@ const products = [
         description: "Disse super fine lilla sneakers tilbyder en fantastisk pasform og en rigtig god sål, der giver optimal komfort hele dagen. De kan nemt matches med både jeans og kjoler, hvilket gør dem perfekte til både hverdagsbrug og mere formelle begivenheder. Sneakersene er almindelige i størrelsen, så du kan vælge din sædvanlige skostørrelse. Deres unikke lilla farve tilføjer et spændende element til ethvert outfit, og de er lige så komfortable, som de er stilfulde." 
     },
     { 
-        name: 'Sort Sneakers', 
+        name: 'Sort Sneakers Aviva', 
         image: 'sneakers/4.jpg', 
         price: 250.00, 
         colors: ['black'], 
@@ -90,7 +90,7 @@ const products = [
         description: "Disse sorte plateau sandaler i ruskindslook har en hælhøjde på 9,5 cm og en plateauhøjde på 3 cm. De er designet til at tilføje ekstra højde og stil til dit outfit, hvilket gør dem ideelle til både fester og formelle arrangementer. Sandalerne har en robust hæl og et komfortabelt plateau, der sikrer, at du kan danse hele natten uden ubehag. Normal i størrelse, så vælg din sædvanlige skostørrelse." 
     },
     { 
-        name: 'Sort Plateau sandal', 
+        name: 'Sort Plateau Aviva', 
         image: 'stilettos/2.jpg', 
         price: 350.00, 
         colors: ['black', 'blue'], 
@@ -103,11 +103,11 @@ for (let i = 0; i < products.length; i += 1) {
     products[i].id = i;
 }
 
-router.get('/', async (req, res, next) => {
+router.get('/', async (req, res) => {
     res.render('index.html', { products });
 });
 
-router.get('/category/:category', async (req, res, next) => {
+router.get('/category/:category', async (req, res) => {
     const category = req.params.category;
     switch (category) {
         case 'stilettos':
@@ -128,14 +128,13 @@ router.get('/category/:category', async (req, res, next) => {
     }
 });
 
-router.get('/:shoeId', async (req, res, next) => {
-    try {
-        const product = products[req.params.shoeId];
-        if (!product) throw new Error();
-        res.render('product.html', { product, products });
-    } catch {
-        res.status(404).json({ message: 'Shoe not found!' });
+router.get('/:shoeId(\\d+)', async (req, res) => {
+    const product = products[req.params.shoeId];
+    if (!product) {
+        return res.status(404).json({ message: 'Shoe not found!' });
     }
+    
+    res.render('product.html', { product, products });
 });
 
 router.use(express.static('public'));
