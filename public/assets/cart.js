@@ -50,9 +50,6 @@ function resetProducts() {
 }
 
 function updateProducts() {
-    let cart = document.getElementById("cart-dropdown");
-    cart.innerHTML = "";
-
     let totalPrice = 0;
     let products = loadProducts();
 
@@ -111,11 +108,26 @@ function updateProducts() {
         hr.classList.add("mb-2");
         container.appendChild(hr);
     }
+
+    let cart = document.getElementById("cart-dropdown");
+    cart.innerHTML = "";
     
     cart.appendChild(container);
+
+    let div = document.createElement("div");
+    div.classList.add("flex");
+
     let total = document.createElement("p");
     total.innerHTML = `Total: ${totalPrice} kr.`;
-    cart.appendChild(total);
+    total.classList.add("justify-start");
+
+    let goToCheckout = document.createElement("a");
+    goToCheckout.innerHTML = "Gå til betaling";
+    goToCheckout.classList.add("hover:underline", "ml-auto", "cursor-pointer");
+
+    div.appendChild(total);
+    div.appendChild(goToCheckout);
+    cart.appendChild(div);
 }
 
 try {
