@@ -63,7 +63,7 @@ function updateProducts() {
 
         let image = document.createElement("img");
         image.src = product.image;
-        image.setAttribute("alt", product.name);
+        image.setAttribute("alt", "Produkt " + product.name);
         
         let title = document.createElement("p");
         title.innerHTML = `<b>${key}</b>`;
@@ -90,7 +90,7 @@ function updateProducts() {
         remove.classList.add("w-5", "h-5", "cursor-pointer", "hover:text-red-500", "hover:scale-110", "absolute", "top-1", "right-1");
         remove.setAttribute("data-target", product.name);
         remove.setAttribute("aria-label", "Remove " + product.name);
-        remove.setAttribute("title", "Remove " + product.name);
+        remove.setAttribute("alt", "Remove " + product.name);
         remove.addEventListener("click", (event) => {
             removeProduct(event.target.getAttribute("data-target"));
             updateProducts();
@@ -133,8 +133,8 @@ function updateProducts() {
 try {
     document.getElementById("add-to-cart").addEventListener("click", () => {
         let product = {};
-        product.name = document.getElementById("product-title").innerHTML;
-        product.price = document.getElementById("product-price").innerHTML;
+        product.name = document.getElementById("product-title").innerText;
+        product.price = document.getElementById("product-price").innerText;
         product.image = document.getElementById("product-image").src;
         product.amount = 1;
         addProduct(product);
