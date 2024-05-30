@@ -66,7 +66,7 @@ function updateProducts() {
         image.setAttribute("alt", product.name);
         
         let title = document.createElement("p");
-        title.innerHTML = key;
+        title.innerHTML = `<b>${key}</b>`;
 
         let price = document.createElement("small");
         price.innerHTML = product.price + "kr";
@@ -118,12 +118,12 @@ function updateProducts() {
     div.classList.add("flex");
 
     let total = document.createElement("p");
-    total.innerHTML = `Total: ${totalPrice} kr.`;
+    total.innerHTML = `<b>Total:</b> ${totalPrice} kr.`;
     total.classList.add("justify-start");
 
     let goToCheckout = document.createElement("a");
     goToCheckout.innerHTML = "Gå til betaling";
-    goToCheckout.classList.add("hover:underline", "ml-auto", "cursor-pointer");
+    goToCheckout.classList.add("underline", "hover:scale-105", "font-bold", "duration-50", "ml-auto", "cursor-pointer");
 
     div.appendChild(total);
     div.appendChild(goToCheckout);
